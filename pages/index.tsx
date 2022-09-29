@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import styled from "styled-components"
+import { HomeScreen } from '../src/screen'
 
 const Head = styled.div`
   display: flex;
@@ -7,11 +8,10 @@ const Head = styled.div`
 
 const Home: NextPage = () => {
   return (
-    <Head>
-      <h1>
-        Hello world
-      </h1>
-    </Head>
+    <>
+      <HomeScreen />
+    </>
+
 
   )
 }

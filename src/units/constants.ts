@@ -4,3 +4,4 @@ export const navigationList = [
   { id: 3, name: 'Works' },
   { id: 4, name: 'Contact' },
 ]
+export const textLogo = 'KURBAN/nDEVELOPER'

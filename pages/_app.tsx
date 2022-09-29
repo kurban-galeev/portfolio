@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
+import 'normalize.css'
 import { store } from '../src/store'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
