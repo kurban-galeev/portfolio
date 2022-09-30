@@ -2,20 +2,19 @@
 import styled from "styled-components"
 
 const Image = styled.img`
-
+  width: 100%;
+  height: 100%;
 `
 const ContainerLogo = styled.div`
   z-index: 10;
 `
 interface Props {
-  srcImage: string
-  width?: string
-  height?: string
+  srcImage?: string
 }
-export const Blot = ({ srcImage, width = '50%', height = '50%' }: Props) => {
+export const Blot = ({ srcImage = "/back.svg" }: Props) => {
   return (
     <ContainerLogo>
-      <Image src={srcImage} style={{ height, width }} />
+      <Image src={srcImage} />
     </ContainerLogo>
   )
 }
