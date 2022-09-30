@@ -3,19 +3,17 @@ import { contentText } from "../utils/constants"
 
 const Container = styled.div`
 border-radius: 10px;
-margin-top: 50px;
 margin-left: 64px;
-z-index: 10;
-width: 65%;
+z-index: 11;
+width: 50%;
 height: 40vh;
 box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
-background-color: rgba(42, 165, 160, 0.5);
+background-color: rgba(215, 215, 215, 0.2);
 
 
 `
 const Text = styled.h1`
   font-family: 'Roboto', sans-serif;
-
   font-weight: 500;
   font-size: 24px;
   padding-left: 30px;
@@ -23,8 +21,8 @@ const Text = styled.h1`
   height: 90%;
   line-height: 30px;
   overflow: hidden;
-  background-color: lime;
-  background-image: linear-gradient(45deg, lime, #E3535D);
+  background-color: #27e6c6;
+  background-image: linear-gradient(45deg, #27e6c6, #000000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 

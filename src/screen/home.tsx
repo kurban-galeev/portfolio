@@ -1,6 +1,7 @@
 
+import { useState } from "react";
 import styled from "styled-components";
-import { Blot, Content, Header } from "../components";
+import { Blot, Content, Footer, Header } from "../components";
 
 interface PropsBlot {
   left?: string
@@ -13,10 +14,11 @@ interface PropsBlot {
 }
 const Container = styled.div`
   flex-direction: column;
-  overflow: hidden;
+  justify-content: space-between;
+
   display: flex;
   height: 100vh;
-	background:linear-gradient(45deg, #2AA5A0, #E3535D, #000000);
+	background:linear-gradient(45deg, #000000, #ffffff);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 @keyframes gradient {
@@ -37,13 +39,19 @@ const Container = styled.div`
 	}
 }
 `
-const ContainerEarth = styled.div`
+const ContainerEarth = styled.div<{ clockwiseRotation: boolean }>`
   position: absolute;
-  animation: animate 60s linear infinite;
+  z-index: 8;
+  animation: ${({ clockwiseRotation }) => clockwiseRotation ? 'clockwiseRotation' : 'notClockwiseRotation '} 60s linear infinite;
+  border-radius: 999px;
   width: 35vw;
   right: 10vw;
-  top: 10vh;
-  @keyframes animate {
+  top: 22vh;
+
+  &: hover {
+    cursor: pointer;
+  }
+  @keyframes clockwiseRotation {
     0% {
       transform: rotate(0deg);
     }
@@ -54,9 +62,21 @@ const ContainerEarth = styled.div`
       transform: rotate(360deg);
     }
   }
+  @keyframes notClockwiseRotation {
+    0% {
+      transform: rotate(360deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
   `
 const ContainerBlot = styled.div<PropsBlot>`
   position: absolute;
+
   left: ${({ left }) => left ?? 0}%;
   right: ${({ right }) => right ?? 0}%;
   top: ${({ top }) => top ?? 0}%;
@@ -88,43 +108,44 @@ const ContainerBlot = styled.div<PropsBlot>`
     }
   }
 `
+const ContainerMoon = styled.div`
+  position: absolute;
+
+  z-index: 9;
+  bottom: 0px;
+  width: 100%;
+`
 
 export const HomeScreen = () => {
+  const [clockwiseRotation, setClockwiseRotation] = useState(false)
+
   return (
     <Container>
       <ContainerBlot left="-20" top="-35" isSmall={false} width='50vw'>
         <Blot />
       </ContainerBlot>
+
       <ContainerBlot left="5" top="-50" isSmall={false} width='70vw'>
         <Blot />
       </ContainerBlot>
+
       <ContainerBlot left="5" top="-15" width='30vw'>
         <Blot />
       </ContainerBlot>
 
-      {/* <ContainerBlot top="-20" right="10" >
-        <Blot />
-      </ContainerBlot> */}
-      {/* <ContainerBlot top="-10" right="-50" isSmall={false}>
-        <Blot />
-      </ContainerBlot> */}
-      <ContainerEarth>
+      <ContainerEarth clockwiseRotation={clockwiseRotation} onClick={() => setClockwiseRotation(!clockwiseRotation)}>
         <Blot srcImage="/earth.svg" />
       </ContainerEarth>
-      {/* <ContainerBlot top="10" right="50">
-        <Blot srcImage="/back.png" />
-      </ContainerBlot>
-      <ContainerBlot left="10" top="-30" isSmall={false}>
-        <Blot />
-      </ContainerBlot>
-      <ContainerBlot right="-40" left="70" top='-30' bottom="-20" >
-        <Blot />
-      </ContainerBlot>
-      <ContainerBlot top="30" right="-70" left="50" isSmall={false}>
-        <Blot />
-      </ContainerBlot> */}
+
       <Header />
+
       <Content />
+
+      <Footer />
+      {/*
+      <ContainerMoon>
+        <Blot srcImage="/kosmo.svg" />
+      </ContainerMoon> */}
     </Container >
   )
 }
