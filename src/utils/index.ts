@@ -1,0 +1,1 @@
+export { getInfoFromHH } from "./getInfoFromhh";
